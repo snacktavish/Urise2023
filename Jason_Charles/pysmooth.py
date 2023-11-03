@@ -1,0 +1,68 @@
+import csv;
+import numpy as np;
+import pandas as pd;
+import matplotlib as mpl;
+import math as m;
+
+
+#with open('MCB_A2.csv') as mcb_a2:
+#    mcb_a2_obj = csv.reader(mcb_a2);
+#    for row in mcb_a2_obj:
+#        print(', '.join(row))
+
+
+
+mcb_a2 = pd.read_csv('MCB_A2.csv', skiprows = 52);
+
+#print(mcb_a2[['lat', 'lon']])
+ll = mcb_a2[['lat', 'lon', 'trksegID']]
+
+#vars
+j = 0.0
+k = 0.0
+dist = 0.0
+c_x1 = 0.0
+c_y1 = 0.0
+c_x2 = ll.loc[1, "lat"]
+c_y2 = ll.loc[1, "lon"]
+
+###
+
+for i in range(len(ll)):
+    j = j + 1
+    k = k + 1
+    
+    if(ll.loc[i, "trksegID"] == 1):
+        if(i % 50 == 0):
+            c_x1 = c_x2
+            c_y1 = c_y2
+            c_x2 = ll.loc[i, "lat"]
+            c_y2 = ll.loc[i, "lon"]
+            dist = dist + m.sqrt((c_x2 - c_x1)**2 + (c_y2 - c_y1)**2)
+    
+    
+    
+    
+
+print(dist)
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
